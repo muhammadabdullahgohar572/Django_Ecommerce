@@ -1,12 +1,8 @@
-https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
-
-
-
 from django.urls import path,include
-from . import views
+from authcart import views
 urlpatterns = [
  
-    path('signup/',views.views ,name="signup"),
+    path('signup/',views.signup ,name="signup"),
     path('login/',views.handlelogin ,name="login"),
     path('logout/',views.handlelogout ,name="logout"),
     
