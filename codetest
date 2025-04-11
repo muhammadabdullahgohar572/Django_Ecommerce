@@ -11,3 +11,72 @@ urlpatterns = [
     path('logout/',views.handlelogout ,name="logout"),
     
 ]
+
+
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <h2>Welcome to <strong>Shopping cart</strong></h2>
+    <p>We are team of talented designers making websites with Bootstrap</p>
+    <a href="" class="btn-get-started">Shop Now</a>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+    <div class="auth-container">
+        <!-- Login Form (default) -->
+        <div id="login-form">
+            <h2 class="form-title">Login</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="login-email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="login-email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="login-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="login-password" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+            <div class="form-switch">
+                <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+            </div>
+        </div>
+
+        <!-- Signup Form (hidden by default) -->
+        <div id="signup-form" style="display: none;">
+            <h2 class="form-title">Sign Up</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="signup-email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signup-email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signup-password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="signup-confirm-password" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+            </form>
+            <div class="form-switch">
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
