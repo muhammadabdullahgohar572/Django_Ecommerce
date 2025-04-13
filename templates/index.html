@@ -21,21 +21,41 @@
 
   <div class="container">
     {% for product_group in allProds %}
-      <div class="alert alert-success" role="alert">
-         <h1>{{product_group.category}}</h1>
+      <!-- Option 2: Card-style Category Header -->
+      <div class="category-card-header mb-4" data-aos="fade-up">
+        <div class="category-card">
+          <div class="category-card-body">
+            <h2 class="category-title">
+              <i class="fas fa-tag me-2"></i>
+              {{product_group.category}}
+            </h2>
+            <span class="badge bg-light text-dark">{{product_group.products|length}} items</span>
+          </div>
+        </div>
       </div>
+      
       <div class="row">
         {% for product in product_group.products %}
         <div class="col-lg-3 col-md-4 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}" style="height: 200px; object-fit: cover;">
+          <div class="card h-100 product-card">
+            <div class="product-badge">
+            
+            </div>
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}">
             <div class="card-body">
               <h5 class="card-title">{{ product.product_name }}</h5>
-              <p class="card-text">{{ product.desc|truncatechars:50 }}</p>
-              <p class="text-primary">₹{{ product.price }}</p>
-              <button class="btn btn-primary add-to-cart" data-product-id="{{ product.product_id }}">
-                Add to Cart
-              </button>
+              <p class="card-text text-muted">{{ product.desc|truncatechars:50 }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="text-primary fw-bold mb-0">₹{{ product.price }}</p>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-sm btn-outline-primary add-to-cart" data-product-id="{{ product.product_id }}">
+                    <i class="fas fa-cart-plus"></i> Add
+                  </button>
+                  <a href="/products/{{product.product_id}}" class="btn btn-sm btn-outline-secondary">
+                    <i class="fas fa-eye"></i> View
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -44,4 +64,76 @@
     {% endfor %}
   </div>
 </section>
+
+<style>
+  /* Category Card Header */
+  .category-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    border-left: 4px solid #28a745;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  .category-card-body {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .category-title {
+    color: #343a40;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  /* Product Cards */
+  .product-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: relative;
+  }
+  
+  .product-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .product-card:hover img {
+    transform: scale(1.03);
+  }
+  
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+  }
+  
+  .product-badge .badge {
+    margin-left: 5px;
+    font-size: 0.7rem;
+  }
+  
+  .add-to-cart {
+    transition: all 0.3s ease;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #28a745 !important;
+    color: white !important;
+  }
+  
+  .btn-group {
+    gap: 5px;
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock %}
