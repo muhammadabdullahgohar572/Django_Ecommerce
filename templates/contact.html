@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block "style" %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .contact-form {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-top: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+    .submit-btn {
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    /* Style for messages */
+    .alert {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block "body" %}
+<div class="container m-5">
+    <!-- Messages display section -->
+    
+    <div class="contact-form">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+        <h2 class="form-title">Contact Us</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">How Can I Help You?</label>
+                <textarea class="form-control" id="message" rows="3" name="desc" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" name="pnumber" id="pnumber">
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

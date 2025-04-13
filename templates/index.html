@@ -5,48 +5,43 @@
   <div class="col-lg-8">
     <h2>Welcome to <strong>Shopping cart</strong></h2>
     <p>We are team of talented designers making websites with Bootstrap</p>
-    <a href="" class="btn-get-started">Shop Now</a>
+    <a href="#products" class="btn-get-started">Shop Now</a>
   </div>
 </div>
 {% endblock %}
 
 {% block "body" %}
-<!-- Portfolio Section -->
-<section id="portfolio" class="portfolio section">
+<!-- Products Section -->
+<section id="products" class="products section">
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <h2>Portfolio</h2>
-    <p><span>Check Our</span> <span class="description-title">Portfolio</span></p>
+    <h2>Shop</h2>
+    <p><span>Check Our</span> <span class="description-title">Products</span></p>
   </div><!-- End Section Title -->
 
   <div class="container">
-    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-        <li data-filter="*" class="filter-active">All</li>
-        <li data-filter=".filter-app">App</li>
-        <li data-filter=".filter-product">Card</li>
-        <li data-filter=".filter-branding">Web</li>
-      </ul><!-- End Portfolio Filters -->
-
-      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-        {% for i in "123456789" %}
-        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{% cycle 'app' 'product' 'branding' 'app' 'product' 'branding' 'app' 'product' 'branding' %}">
-          <img src="static/assets/img/masonry-portfolio/masonry-portfolio-{{ i }}.jpg" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4>{% cycle 'App' 'Product' 'Branding' %} {{ forloop.counter }}</h4>
-            <p>Lorem ipsum, dolor sit</p>
-            <a href="static/assets/img/masonry-portfolio/masonry-portfolio-{{ i }}.jpg" title="{% cycle 'App' 'Product' 'Branding' %} {{ forloop.counter }}" data-gallery="portfolio-gallery-{% cycle 'app' 'product' 'branding' %}" class="glightbox preview-link">
-              <i class="bi bi-zoom-in"></i>
-            </a>
-            <a href="portfolio-details.html" title="More Details" class="details-link">
-              <i class="bi bi-link-45deg"></i>
-            </a>
+    {% for product_group in allProds %}
+      <div class="alert alert-success" role="alert">
+         <h1>{{product_group.category}}</h1>
+      </div>
+      <div class="row">
+        {% for product in product_group.products %}
+        <div class="col-lg-3 col-md-4 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card h-100">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.product_name }}</h5>
+              <p class="card-text">{{ product.desc|truncatechars:50 }}</p>
+              <p class="text-primary">₹{{ product.price }}</p>
+              <button class="btn btn-primary add-to-cart" data-product-id="{{ product.product_id }}">
+                Add to Cart
+              </button>
+            </div>
           </div>
-        </div><!-- End Portfolio Item -->
+        </div>
         {% endfor %}
-      </div><!-- End Portfolio Container -->
-    </div>
+      </div>
+    {% endfor %}
   </div>
-</section><!-- /Portfolio Section -->
+</section>
 {% endblock %}
-

@@ -80,3 +80,10 @@ urlpatterns = [
 
 
 
+
+
+pip install pytube
+
+pip install certifi
+
+
